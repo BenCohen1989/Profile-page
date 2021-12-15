@@ -1,0 +1,53 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+  integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<div class="custom-auth-container">
+  <div class="container" id="container">
+    <div class="form-container sign-up-container">
+      <form>
+        <h1 class="custom-auth-text">Create an account</h1>
+        <input type="text" placeholder="Full Name" />
+
+        <input type="email" placeholder="Email" />
+        <input type="password" placeholder="Password" />
+        <button>Subscribe</button>
+      </form>
+    </div>
+    <div class="form-container sign-in-container">
+      <form [formGroup]="loginForm" (ngSubmit)="signIn()">
+        <!-- <img src="../../../assets/img/dark_logo_ovc (1).png" class="ovc_logo" alt=""> -->
+        <h1>Login</h1>
+        <input type="email" placeholder="Email"  formControlName="email" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
+        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+          <div *ngIf="f.email.errors.required">Email is required</div>
+          <div *ngIf="f.email.errors.email">Email needs to be a valid email</div>
+        </div>
+        <input type="password" placeholder="Password" 
+        formControlName="password"
+        class="form-control form-control-merge login-form-input"
+        [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
+        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+          <div *ngIf="f.password.errors.required">Password required</div>
+          <div *ngIf="f.password.errors.minLength">Password needs to be at least 6 characters</div>
+        </div>
+        <button type="submit" (click)="signIn()" class="signin-btn">          
+          Log in
+        </button>
+      </form>
+    </div>
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-left">
+          <h1>Happy to see you again !</h1>
+          <p>In order to connect,please enter your credentials</p>
+          <button (click)="type='signIn'" class="ghost cursor-pointer" id="signIn">Login</button>
+        </div>
+        <div class="overlay-panel overlay-right">
+          <h1>Hi !</h1>
+          <p>Please enter your informations and start a project !</p>
+          <!-- <button (click)="type='signUp'" class="ghost cursor-pointer" id="signUp">S'inscrire</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
